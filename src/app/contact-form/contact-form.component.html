@@ -1,0 +1,50 @@
+<form  #f="ngForm"  (ngSubmit)="submit(f)">
+    <div ngModelGroup="contact">
+        <div class="form-group">
+            <label for="firstname">firstname</label>
+            <input required  pattern="[a-zA-Z]+"   minlength="4"  ngModel name="firstname" #firstName="ngModel" (change)="log(firstName)" type="text" class="form-control">
+            <div class="alert alert-danger" *ngIf="!firstName.valid && firstName.touched">
+                <div *ngIf="firstName.errors.required">ce champ est obligatoire</div>
+                <div *ngIf="firstName.errors.minlength">ce champ doit avoir au moins {{firstName.errors.minlength.requiredLength}} chars !!</div>
+                <div *ngIf="firstName.errors.pattern">firstname doit etre alpha </div>
+        
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname">lastname</label>
+            <input ngModel name="lastname" #lastname  type="text" class="form-control">
+        </div>
+    </div>
+
+<div class="form-group">
+    <label for="comment">comment</label>
+    <textarea  ngModel name="comment" #comment  type="text"  id="comment" class="form-control"></textarea>
+</div>
+<div class="checkbox">
+    <label >
+        <input type="checkbox" name="subscribe" ngModel>  S'abonner
+    </label>
+</div>
+
+<div class="form-group">
+    <label>Methode de conatct </label>
+    <select name="ContactMethod" ngModel>
+        <option value=""></option>
+        <option  *ngFor="let method of ConatctMethods" [value]="method.id"   [ngValue]="method" >{{method.method}}</option>
+    </select>
+</div>
+
+<div class="radio"  *ngFor="let method of ConatctMethods ">
+    <label for="">
+        <input type="radio" name="contactmethod2"  ngModel [value]="method.id"> {{method.method}}
+    </label>
+</div>
+
+
+<div class="form-group">
+    <button class="btn btn-primary"   [disabled]="!f.valid">Enregistrer</button>
+
+</div>
+</form>
+
+<p>{{f.value | json }}</p>

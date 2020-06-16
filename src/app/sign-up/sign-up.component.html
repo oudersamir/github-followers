@@ -1,0 +1,34 @@
+
+
+<form [formGroup]="form">
+
+    <div class="form-group">
+        <label>username</label>
+        <input type="text"
+         name="username"
+         formControlName="username"
+          class="form-control">
+        <div class="alert alert-danger"
+         *ngIf="username.touched && username.invalid ">
+         <div *ngIf="username.errors.required">username is required !!</div>
+         <div *ngIf="username.errors.minlength">username doit avoir au moins 2 !</div> 
+         <div *ngIf="username.errors.cannotContainsSpace">username ne doit pas avoir des espaces!</div> 
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>password</label>
+        <input type="password"
+         name="password" 
+         formControlName="password"
+          class="form-control">
+
+          <div class="alert alert-danger"
+          *ngIf="password.touched && password.invalid ">
+          <div *ngIf="password.errors.required">password is required !!</div>
+          <div *ngIf="password.errors.minlength">password doit avoir au moins 2 !</div> 
+         </div>
+    </div>
+    <button class="btn btn-success">enregistrer</button>
+</form>

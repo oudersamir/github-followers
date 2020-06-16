@@ -1,0 +1,12 @@
+
+
+<div  *ngFor="let follow of followers"  class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{follow.avatar_url}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{follow.login}}</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a [routerLink]="['/followers',follow.id,follow.login]" 
+         [queryParams]="{page:1,type:follow.type,var:'val'}"  class="btn btn-primary">{{follow.id}}</a>
+    </div>
+  </div>
+
